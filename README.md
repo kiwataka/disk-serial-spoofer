@@ -61,15 +61,15 @@ Open **x64 Native Tools Command Prompt for VS** and run:
 cd path\to\project
 build -cegz
 
-Result: `spoof.sys`
-
+Result: spoof.sys```
+```
 #### 2. Enable Test Signing (one-time setup)
 
 ```cmd
 bcdedit /set testsigning on
 
 Reboot the system.
-
+```
 #### 3. Install the driver
 
 **Method A — Using INF (recommended)**
@@ -77,13 +77,13 @@ Reboot the system.
 ```cmd
 copy spoof.sys C:\Windows\System32\drivers\
 copy spoof.inf C:\Windows\System32\
-
+```
 **Method B — Manual service**
 
 ```cmd
 sc create spoof type= kernel start= demand binPath= C:\Windows\System32\drivers\spoof.sys
 sc start spoof
-
+```
 #### 4. Verify spoofing
 
 1. Open **Device Manager** → **Disk drives**
@@ -101,7 +101,7 @@ sc delete spoof
 bcdedit /set testsigning off
 
 Reboot required.
-
+```
 <br/>
 
 ### 🔬 How It Works
