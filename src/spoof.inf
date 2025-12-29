@@ -1,0 +1,44 @@
+[Version]
+Signature="$WINDOWS NT$"
+Class=DiskDrive
+ClassGuid={4d36e967-e325-11ce-bfc1-08002be10318}
+Provider=%ProviderName%
+DriverVer=12/29/2025,1.0.0.0
+CatalogFile=spoof.cat
+PnpLockdown=1
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskName%
+
+[SourceDisksFiles]
+spoof.sys = 1
+
+[Manufacturer]
+%ProviderName% = Standard,NTamd64
+
+[Standard.NTamd64]
+%ServiceDescription% = InstallSection, SCSI\Disk&*
+
+[InstallSection]
+CopyFiles = DriverFiles
+
+[DriverFiles]
+spoof.sys
+
+[InstallSection.Services]
+AddService = spoof, 0x00000002, ServiceInstall
+
+[ServiceInstall]
+ServiceType = 1            ; KERNEL_DRIVER
+StartType = 3              ; DEMAND_START
+ErrorControl = 1           ; NORMAL
+ServiceBinary = %12%\spoof.sys
+DisplayName = "Disk Serial Spoofer Driver"
+
+[Strings]
+ProviderName = "kiwataka"
+DiskName = "Disk Serial Spoofer Installation Disk"
+ServiceDescription = "Disk Serial Spoofer Driver"
